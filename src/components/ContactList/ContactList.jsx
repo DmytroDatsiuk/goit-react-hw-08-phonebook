@@ -1,19 +1,19 @@
-import React from 'react';
 import { List, Button, Description, Item } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import {
-  deleteContactThunk,
-  getContactsThunk,
-} from 'redux/thunks/contactsThunk';
-import { selectFilteredContacts } from 'redux/contacts/selectors';
+import { deleteContact, fetchContacts } from 'redux/thunks/operations';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const filteredContacts = useSelector(selectFilteredContacts);
+  const contacts = useSelector(state => state.items.contacts);
+  const filter = useSelector(state => state.filter);
+
+  const filteredContacts = contacts.filter(item =>
+    item.name.toLowerCase().includes(filter)
+  );
 
   useEffect(() => {
-    dispatch(getContactsThunk());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
@@ -27,10 +27,7 @@ export const ContactList = () => {
               <Description>
                 {name}: {number}
               </Description>
-              <Button
-                type="button"
-                onClick={() => dispatch(deleteContactThunk(id))}
-              >
+              <Button type="button" onClick={() => dispatch(deleteContact(id))}>
                 Delete
               </Button>
             </Item>

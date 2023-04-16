@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Notify } from 'notiflix';
-import { addContactThunk } from 'redux/thunks/contactsThunk';
+import { toast } from 'react-toastify';
+
+import { addContact } from 'redux/thunks/operations';
 import { Button, Form, Input, Label } from './ContactForm.styled';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(state => state.items.contacts);
   const dispatch = useDispatch();
 
   const handleChangeData = e => {
@@ -29,8 +30,8 @@ export const ContactForm = () => {
       ({ name: currentName }) =>
         currentName.toLowerCase() === name.toLowerCase()
     )
-      ? Notify.info(`a contact with the name ${name} already exists`)
-      : dispatch(addContactThunk({ name, number }));
+      ? toast.info(`a contact with the name ${name} already exists`)
+      : dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };
