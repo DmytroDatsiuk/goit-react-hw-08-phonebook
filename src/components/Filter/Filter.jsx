@@ -5,7 +5,8 @@ import { setFilter } from 'redux/slices/filterSlice';
 export const Filter = () => {
   const filter = useSelector(state => state.filter);
   const dispatch = useDispatch();
-  const handleChangeFilter = e => dispatch(setFilter(e.target.value));
+  const handleChangeFilter = e =>
+    dispatch(setFilter(e.target.value.toLowerCase()));
 
   return (
     <FilterBox>
@@ -18,7 +19,7 @@ export const Filter = () => {
           placeholder="Search contact"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           onChange={handleChangeFilter}
-          value={filter}
+          value={filter.toLowerCase()}
         />
       </Label>
     </FilterBox>
