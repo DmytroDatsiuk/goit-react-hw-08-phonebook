@@ -10,5 +10,4 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 2023;
-  color: lightblue;
 `;
