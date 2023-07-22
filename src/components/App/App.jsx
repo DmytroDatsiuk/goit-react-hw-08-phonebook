@@ -32,12 +32,6 @@ export const App = () => {
         <Route path="/contacts" element={<Contacts />} />
       </Routes>
       <ToastContainer autoClose={1000} />
-      {/* {isLoading && <Loader />}
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList /> */}
     </Layout>
   );
 };

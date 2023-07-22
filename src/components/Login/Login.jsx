@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { login } from 'redux/thunks/operations';
-import { Form } from './Login.styled';
+import { Button, Form, Input, Label } from './Login.styled';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -33,27 +33,27 @@ export const Login = () => {
   if (!isAuth) {
     return (
       <Form onSubmit={formSubmit}>
-        <label>
+        <Label>
           Email
-          <input
+          <Input
             type="email"
             name="email"
             required
             value={email}
             onChange={inputOperator}
           />
-        </label>
-        <label>
+        </Label>
+        <Label>
           Password
-          <input
+          <Input
             type="password"
             name="password"
             required
             value={password}
             onChange={inputOperator}
           />
-        </label>
-        <button type="submit">Log in</button>
+        </Label>
+        <Button type="submit">Log in</Button>
       </Form>
     );
   } else {
